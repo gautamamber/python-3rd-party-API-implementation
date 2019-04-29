@@ -44,5 +44,18 @@ def commentary():
 		comm.append(i['comm'])
 	return render_template("commentry.html", comm = comm)
 
+@app.route('/match_info')
+def matchinfo():
+	matchinfo = []
+	i = c.matchinfo('22482')
+	matchinfo.append("Type of match is: " + i['srs'])
+	matchinfo.append("Team one: " + i['team1']['name'])
+	matchinfo.append("Team two: " + i['team2']['name'])
+	matchinfo.append("Venue: " + i['venue_name'])
+	matchinfo.append("Match status: " + i['status'])
+	matchinfo.append("Overs :" + i['type'])
+
+	return render_template("matchinfo.html", matchinfo = matchinfo)
+
 if __name__ == '__main__':
    app.run()
