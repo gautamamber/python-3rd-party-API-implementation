@@ -34,5 +34,15 @@ def score_card():
 
 	return render_template("live_score.html", i = i)
 
+
+@app.route('/commentry')
+def commentary():
+	commentary = c.commentary("22482")['commentary']
+	comm  = []
+	for i in commentary:
+		print(i['comm'])
+		comm.append(i['comm'])
+	return render_template("commentry.html", comm = comm)
+
 if __name__ == '__main__':
    app.run()
