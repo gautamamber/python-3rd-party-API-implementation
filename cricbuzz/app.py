@@ -1,8 +1,14 @@
 from pycricbuzz import Cricbuzz
+from flask import Flask, render_template
+app = Flask(__name__)
 c = Cricbuzz()
-
-def matches():
+@app.route('/')
+def index():
+	all_matches = []
 	matches = c.matches()
-	print(matches)
+	for i in matches:
+		all_matches.append(i['srs'])
+	return render_template("index.html", all_matches = all_matches)
 
-matches()
+if __name__ == '__main__':
+   app.run()
